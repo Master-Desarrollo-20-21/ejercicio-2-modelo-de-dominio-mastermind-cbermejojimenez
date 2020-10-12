@@ -1,0 +1,48 @@
+@startuml
+Mastermind *-down-> "2" Player
+Mastermind *-down->Board
+Mastermind *-down->Turn
+
+Turn -down-> "2" Player
+
+MakerPlayer -up-|> Player
+BreakerPlayer -up-|> Player
+
+Board o-down-> "0..10" Row
+Row o-down-> "0..1" SecretCombination
+Row o-down-> "0..10" ProposedCombination
+
+Row *-down-> ResultEvaluator 
+
+ResultEvaluator *-down-> Result
+
+Result -down-> SecretCombination
+Result -down-> ProposedCombination
+
+
+Result <|-down- Goal
+
+Result *-right-> "0..4" SuccessMarker
+SuccessMarker o-down-> "0..1" White
+SuccessMarker o-down-> "0..1" Black
+
+MakerPlayer --> SecretCombination
+BreakerPlayer --> ProposedCombination
+
+SecretCombination --|> Combination
+ProposedCombination --|> Combination
+
+Combination *-down-> Position
+Position o-down-> Color
+
+enum Colors {
+RED
+BLUE
+YELLOW
+GREEN
+ORANGE
+PURPLE
+}
+
+Color --> Colors
+@enduml

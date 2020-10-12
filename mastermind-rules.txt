@@ -1,0 +1,8 @@
+@startuml
+title Mastermind Rules
+[*] --> A : Put secret combination
+A --> B : Propose combination
+B --> C : Eval combination
+C --> [*]: IsMastermind (Blacks == Combination Length || 10 attempts)
+C --> A
+@enduml
